@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 690px;
+            height: 459px;
+            margin: 100px auto;
+            perspective: 1100px;
+        }
+
+        ul{
+
+            float: left;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            width: 50%;
+            height: 100%;
+            /* background-color: #f00; */
+
+            position: relative;
+
+            transform-style: preserve-3d;
+        }
+
+        li{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        li:nth-child(1){
+            transform: translateZ(229.5px);
+            background: url(images/1.jpg) no-repeat;
+        }
+
+        li:nth-child(2){
+            transform: rotateX(90deg) translateZ(229.5px);
+            background: url(images/2.jpg) no-repeat;
+        }
+        li:nth-child(3){
+            transform: rotateX(180deg) translateZ(229.5px);
+            background: url(images/3.jpg) no-repeat;
+        }
+
+        li:nth-child(4){
+            transform: rotateX(-90deg) translateZ(229.5px);
+            background: url(images/4.jpg) no-repeat;
+        }
+
+        .right>li{
+            background-position-x: -345px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul class="left">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul class="right">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <input type="button" value="下一页" id="next">
+</body>
+</html>
+
+<script>
+    var left = document.querySelector('.left');
+    var right =document.querySelector('.right');
+
+    var page = 0;
+    document.getElementById('next').onclick = function(){
+        page++;
+        var angle = page * -90  + "deg";
+
+        left.style.transform = "rotateX("+angle+")";
+        left.style.transition = "all 1s";
+        right.style.transform = "rotateX("+angle+")";
+        right.style.transition = "all 1s 1s";
+    }
+</script>
